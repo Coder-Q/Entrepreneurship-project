@@ -36,7 +36,15 @@ class _MyHomePageState extends State<MyHomePage> {
             ])),
         child: Column(
           children: <Widget>[
-            Navbar(),
+            Navbar(
+              onTap: (int data) {
+                tabController.animateToPage(
+                  data,
+                  duration: Duration(milliseconds: 350),
+                  curve: Curves.easeInCubic,
+                );
+              },
+            ),
             Expanded(
               child: PreloadPageView(
                 physics: BouncingScrollPhysics(),

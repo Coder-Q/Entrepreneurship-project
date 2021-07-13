@@ -4,6 +4,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:hovering/hovering.dart';
 
 class Navbar extends StatelessWidget {
+  final Function(int) onTap;
+
+  const Navbar({Key? key, required this.onTap}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -11,9 +14,13 @@ class Navbar extends StatelessWidget {
         // print(constraints.maxWidth);
         if ((constraints.maxWidth > 1200) ||
             (constraints.maxWidth > 1100 && constraints.maxWidth < 1200)) {
-          return DesktopNavbar();
+          return DesktopNavbar(
+            onTap: onTap,
+          );
         } else {
-          return MobileNavbar();
+          return MobileNavbar(
+            onTap: onTap,
+          );
         }
       },
     );
@@ -21,6 +28,9 @@ class Navbar extends StatelessWidget {
 }
 
 class DesktopNavbar extends StatelessWidget {
+  final Function(int) onTap;
+
+  const DesktopNavbar({Key? key, required this.onTap}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -52,7 +62,7 @@ class DesktopNavbar extends StatelessWidget {
                 HoverButtonsForThis(
                   text: 'Home',
                   icon: Icons.home_outlined,
-                  onPress: () {},
+                  onPress: () => onTap(0),
                 ),
                 SizedBox(
                   width: 30,
@@ -60,7 +70,7 @@ class DesktopNavbar extends StatelessWidget {
                 HoverButtonsForThis(
                   text: 'About us',
                   icon: CupertinoIcons.drop_triangle,
-                  onPress: () {},
+                  onPress: () => onTap(1),
                 ),
                 SizedBox(
                   width: 30,
@@ -68,14 +78,14 @@ class DesktopNavbar extends StatelessWidget {
                 HoverButtonsForThis(
                   text: 'Product',
                   icon: CupertinoIcons.bag_badge_plus,
-                  onPress: () {},
+                  onPress: () => onTap(2),
                 ),
                 SizedBox(
                   width: 30,
                 ),
                 HoverButtonsForThis(
                   text: 'Why Balbir?',
-                  onPress: () {},
+                  onPress: () => onTap(3),
                 ),
                 SizedBox(
                   width: 30,
@@ -92,7 +102,7 @@ class DesktopNavbar extends StatelessWidget {
                       style: TextStyle(color: Colors.white),
                     ),
                   ),
-                  onpressed: () {},
+                  onpressed: () => onTap(4),
                 ),
               ],
             )
@@ -104,6 +114,9 @@ class DesktopNavbar extends StatelessWidget {
 }
 
 class MobileNavbar extends StatelessWidget {
+  final Function(int) onTap;
+
+  const MobileNavbar({Key? key, required this.onTap}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -141,7 +154,7 @@ class MobileNavbar extends StatelessWidget {
                       HoverButtonsForThis(
                         text: 'Home',
                         icon: Icons.home_outlined,
-                        onPress: () {},
+                        onPress: () => onTap(0),
                       ),
                       SizedBox(
                         width: 30,
@@ -149,7 +162,7 @@ class MobileNavbar extends StatelessWidget {
                       HoverButtonsForThis(
                         text: 'About us',
                         icon: CupertinoIcons.drop_triangle,
-                        onPress: () {},
+                        onPress: () => onTap(1),
                       ),
                       SizedBox(
                         width: 30,
@@ -157,14 +170,14 @@ class MobileNavbar extends StatelessWidget {
                       HoverButtonsForThis(
                         text: 'Product',
                         icon: CupertinoIcons.bag_badge_plus,
-                        onPress: () {},
+                        onPress: () => onTap(2),
                       ),
                       SizedBox(
                         width: 30,
                       ),
                       HoverButtonsForThis(
                         text: 'Why Balbir?',
-                        onPress: () {},
+                        onPress: () => onTap(3),
                       ),
                       SizedBox(
                         width: 30,
@@ -182,7 +195,7 @@ class MobileNavbar extends StatelessWidget {
                             style: TextStyle(color: Colors.white),
                           ),
                         ),
-                        onpressed: () {},
+                        onpressed: () => onTap(4),
                       ),
                     ],
                   ),
@@ -207,6 +220,8 @@ class HoverButtonsForThis extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return HoverButton(
+      minWidth: 110,
+      hoverColor: Colors.black.withOpacity(0.5),
       child: Row(
         children: [
           Text(

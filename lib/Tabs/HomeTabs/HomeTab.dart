@@ -1,7 +1,12 @@
-// ignore: import_of_legacy_library_into_null_safe
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:entrepreneurship_project/Utils/Constants.dart';
+import 'package:entrepreneurship_project/Tabs/HomeTabTabs/AllProduct.dart';
+import 'package:entrepreneurship_project/Tabs/HomeTabTabs/Angles.dart';
+import 'package:entrepreneurship_project/Tabs/HomeTabTabs/Bars.dart';
+import 'package:entrepreneurship_project/Tabs/HomeTabTabs/Beams.dart';
+import 'package:entrepreneurship_project/Tabs/HomeTabTabs/Channels.dart';
+import 'package:entrepreneurship_project/Tabs/HomeTabTabs/StartPage.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:preload_page_view/preload_page_view.dart';
 
 class HomeTab extends StatefulWidget {
   @override
@@ -9,41 +14,50 @@ class HomeTab extends StatefulWidget {
 }
 
 class _HomeTabState extends State<HomeTab> {
-  int carouselPage = 0;
-  CarouselController nextButton = CarouselController();
-  List<String> imageList = [
-    Constants.carosol1ImagePath,
-    Constants.carosol2ImagePath,
-    Constants.carosol3ImagePath,
-  ];
+  late PreloadPageController tabController;
+  int tab = 0;
+
+  void initState() {
+    super.initState();
+    tabController = PreloadPageController();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    return PreloadPageView(
+      scrollDirection: Axis.vertical,
       physics: BouncingScrollPhysics(),
-      child: Container(
-        child: Column(
-          children: [
-            CarouselSlider.builder(
-              itemCount: imageList.length,
-              carouselController: nextButton,
-              options: CarouselOptions(
-                autoPlay: true,
-                height: MediaQuery.of(context).size.height * 0.5,
-                viewportFraction: 1,
-                onPageChanged: (data, reason) {
-                  carouselPage = data;
-                  setState(() {});
-                },
-              ),
-              itemBuilder: (context, index, reason) => Image.asset(
-                imageList[index],
-                width: MediaQuery.of(context).size.width,
-              ),
-            ),
-          ],
+      preloadPagesCount: 5,
+      controller: tabController,
+      onPageChanged: (data) {
+        setState(() {
+          tab = data;
+        });
+      },
+      children: [
+        StartPage(
+          onTap: () {
+            tabController.animateToPage(
+              1,
+              duration: Duration(milliseconds: 350),
+              curve: Curves.easeInCubic,
+            );
+          },
         ),
-      ),
+        AllProducts(
+          onTap: (int data) {
+            tabController.animateToPage(
+              data,
+              duration: Duration(milliseconds: 350),
+              curve: Curves.easeInCubic,
+            );
+          },
+        ),
+        Angles(),
+        Bars(),
+        Beams(),
+        Channels(),
+      ],
     );
   }
 }
