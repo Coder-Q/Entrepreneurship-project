@@ -8,4 +8,7 @@ class Constants {
   static const barsImagePath = 'assets/images/bars.jpg';
   static const beamsImagePath = 'assets/images/beams.jpg';
   static const channelImagePath = 'assets/images/channels.jpg';
+  static const isiImagePath = 'assets/images/isi.jpeg';
+  static const advImagePath = 'assets/images/advantage.jpeg';
+  static const stdImagePath = 'assets/images/standard.jpeg';
 }

@@ -78,6 +78,8 @@ class CustomImageContainer extends StatelessWidget {
       onTap: onTap,
       child: HoverContainer(
         cursor: SystemMouseCursors.click,
+        hoverHeight: MediaQuery.of(context).size.height * 0.35,
+        hoverWidth: MediaQuery.of(context).size.width * 0.35,
         child: Card(
           clipBehavior: Clip.hardEdge,
           elevation: 5,

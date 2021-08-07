@@ -15,6 +15,43 @@ class Bars extends StatelessWidget {
             width: MediaQuery.of(context).size.width,
           ),
         ),
+        Container(
+          child: Column(
+            children: [
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.1,
+              ),
+              Center(
+                child: Text(
+                  'TMT Bars',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 40,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.05,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Column(
+                    children: [
+                      Text(
+                        '- 8 MM to 40 MM',
+                        style: TextStyle(
+                          color: Colors.deepOrange,
+                          fontSize: 26,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
       ],
     );
   }

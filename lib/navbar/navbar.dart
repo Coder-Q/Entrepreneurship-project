@@ -98,7 +98,7 @@ class DesktopNavbar extends StatelessWidget {
                       borderRadius: BorderRadius.all(Radius.circular(20.0)),
                     ),
                     child: Text(
-                      "Get started",
+                      "Contact Us",
                       style: TextStyle(color: Colors.white),
                     ),
                   ),
@@ -191,7 +191,7 @@ class MobileNavbar extends StatelessWidget {
                                 BorderRadius.all(Radius.circular(20.0)),
                           ),
                           child: Text(
-                            "Get started",
+                            "Contact Us",
                             style: TextStyle(color: Colors.white),
                           ),
                         ),
